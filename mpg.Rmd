@@ -1,0 +1,22 @@
+Impact of automobile aspects on fuel consumption
+========================================================
+
+## Executive Summary
+
+“Is an automatic or manual transmission better for MPG”
+"Quantify the MPG difference between automatic and manual transmissions"
+
+## Data Processing
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+## Results
+```{r}
+fit_all <- lm(mpg~., mtcars)
+summary(fit_all)
+```
+
+## Appendix
+
+```{r}
+plot(mpg~factor(cyl), mtcars) QQQ mettre les titres
+```
