@@ -210,10 +210,10 @@ In this analysis, we will answer the following two questions:</p>
 
 <p>We compare MPG for the automatic and manual transmission using Student t test: Our null hypothesis (H0) is &ldquo;there is no difference in MPG between transmission&rdquo; and our alternative hypothesis (Ha) is &ldquo;automatic transmission have lower fuel consumption than manual&rdquo;</p>
 
-<pre><code class="r">t.test(mpg ~ am, mtcars, alternative = &quot;greater&quot;)$p.value  #less fuel consumption=&gt;greater MPG
+<pre><code class="r">t.test(mpg ~ am, mtcars, alternative = &quot;less&quot;)$p.value
 </code></pre>
 
-<pre><code>## [1] 0.9993
+<pre><code>## [1] 0.0006868
 </code></pre>
 
 <p>The p-value is lower than 0.05, the result is significant and the null hypothesis can be rejected.<br/>

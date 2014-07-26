@@ -18,11 +18,11 @@ mtcars$am <- factor(mtcars$am, levels = c(0, 1), labels = c("automatic", "manual
 We compare MPG for the automatic and manual transmission using Student t test: Our null hypothesis (H0) is "there is no difference in MPG between transmission" and our alternative hypothesis (Ha) is "automatic transmission have lower fuel consumption than manual"
 
 ```r
-t.test(mpg ~ am, mtcars, alternative = "greater")$p.value  #less fuel consumption=>greater MPG
+t.test(mpg ~ am, mtcars, alternative = "less")$p.value
 ```
 
 ```
-## [1] 0.9993
+## [1] 0.0006868
 ```
 
 The p-value is lower than 0.05, the result is significant and the null hypothesis can be rejected.  
