@@ -1,19 +1,13 @@
 Impact of Transmission on MPG
 ========================================================
-Motor Trend, a magazine about the automobile industry, is interested in exploring the relationship between a set of variables and miles per gallon (MPG) of a collection of cars.  
-In this analysis, we will answer the following two questions:
-* "Is an automatic or manual transmission better for MPG ?"
+## Executive Summary
+Motor Trend magazine is interested in exploring the relationship between a set of variables and miles per gallon (MPG) of a collection of cars. This analysis answers two questions:  
+* "Is an automatic or manual transmission better for MPG ?"  
 * "Quantify the MPG difference between automatic and manual transmissions"
 
+Considering a model that includes weight, acceleration and transmission, we can say that automatic cars have 2.94 miles per galon (MPG) more than manual cars.
 ## Exploratory Data Analysis
-The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
-
-The transmission ("am" variable) is binary and can take 2 values: 0 = automatic, 1 = manual.
-
-```r
-mtcars$am <- factor(mtcars$am, levels = c(0, 1), labels = c("automatic", "manual"))
-```
-
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).  
 
 We compare MPG for the automatic and manual transmission using Student t test: Our null hypothesis (H0) is "there is no difference in MPG between transmission" and our alternative hypothesis (Ha) is "automatic transmission have lower fuel consumption than manual"
 
@@ -27,7 +21,6 @@ t.test(mpg ~ am, mtcars, alternative = "less")$p.value
 
 The p-value is lower than 0.05, the result is significant and the null hypothesis can be rejected.  
 We can say that, when we assume that all other variables are same for automatic and manual transmission, automatic transmission is better than manual transmission for MPG.  
-  
 But, as shown in Figure 2 in Appendix, this is not the case: some variables of the dataset (like weight, for example) doesn't have the same distribution for automatic and manual transmission.
 
 
@@ -94,7 +87,7 @@ summary(fit.step)$adj.r.squared
 The adjusted $R^2$ is 0.8336 which means that the model explains 83% of the variation.
 
 ### Model comparison and Residuals analysis
-We then compare the model proposed by Stepwise with our first model based on Simple Linear Regression using ANOVA.
+We then compare the model proposed by Stepwise with our first model using ANOVA.
 
 ```r
 anova(fit.simple, fit.step)[2, 6]  #p-value
@@ -104,10 +97,8 @@ anova(fit.simple, fit.step)[2, 6]  #p-value
 ## [1] 1.55e-09
 ```
 
-The p-value is very low: we can then reject the null hypothesis (i.e. "Model are equals") and claim that the model proposed by the Stepwise algorithm is better than our first simple model.
-
-The Figure 3 (in Appendix) is a residual plot of the selected model.  
-Residuals seems to be uncorrelated with the fit, independent and (almost) identically distributed with mean zero.
+The p-value is very low: we can then reject the null hypothesis (i.e. "Model are equals") and claim that the model proposed by the Stepwise algorithm is better than our first simple model.  
+The Figure 3 (in Appendix) is a residual plot of the selected model. Residuals seems to be uncorrelated with the fit, independent and (almost) identically distributed with mean zero.
 
 ## Results
 
@@ -124,22 +115,19 @@ summary(fit.step)$coefficients
 ```
 
 Given the coefficients of our model, we can say that automatic cars have lower fuel consumption than manual cars: they have 2.94 miles per galon (MPG) more than manual cars. This value can be obtained when we consider the weight (wt) and the "1/4 mile time" (qsec) variables of the cars of our dataset.
-  
-   
-   
    
 ## Appendix
 ### Figure 1: MPG by Transmission
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
 
 
 ### Figure 2: Scatterplot Matrix
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
 
 Cars with *automatic* transmission are plot in green.  
 Cars with *manual* transmission are plot in blue. 
 
 ### Figure 3: Residual plot for the selected model without and with interactions
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
 
  
